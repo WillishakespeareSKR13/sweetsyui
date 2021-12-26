@@ -5,6 +5,10 @@
   "files": [
     "build"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "test": "rollup -c",
     "build": "rollup -c",
