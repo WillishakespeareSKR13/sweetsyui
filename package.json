@@ -1,6 +1,6 @@
 {
-  "name": "@sweetsui/ui",
-  "version": "2.0.4",
+  "name": "@sweetsyui/ui",
+  "version": "1.0.0",
   "main": "build/index.js",
   "files": [
     "build"
