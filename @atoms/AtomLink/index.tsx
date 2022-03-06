@@ -34,7 +34,13 @@ const Link: FC<AtomLinkProps> = (props) => {
       <LinkForewardRef {...props}>{children}</LinkForewardRef>
     </NextLink>
   ) : (
-    <TextStyledA {...Animation} fontWeight="bold" cursor="pointer" {...props}>
+    <TextStyledA
+      {...Animation}
+      fontWeight="bold"
+      cursor="pointer"
+      target="_blank"
+      {...props}
+    >
       {children}
     </TextStyledA>
   );

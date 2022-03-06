@@ -40,10 +40,10 @@ export const LoaderContainer = styled.div<LoaderProps>`
     height: 64px;
     margin: 8px;
     border: ${({ widthLoader }) => widthLoader || '8px'} solid
-      ${({ colorLoading }) => colorLoading || `black`};
+      ${({ colorLoading }) => colorLoading || `#fe6a6a`};
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: ${({ colorLoading }) => colorLoading || `black`} transparent
+    border-color: ${({ colorLoading }) => colorLoading || `#fe6a6a`} transparent
       transparent transparent;
   }
   .lds-ring div:nth-of-type(1) {

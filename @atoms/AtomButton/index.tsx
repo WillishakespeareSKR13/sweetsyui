@@ -8,9 +8,9 @@ const Animation = {
 };
 
 const AtomButton: FC<AtomButtonTypes> = (props) => {
-  const { children } = props;
+  const { children, disabled } = props;
   return (
-    <ButtonStyled {...Animation} {...props}>
+    <ButtonStyled {...(disabled ? {} : Animation)} {...props}>
       {children || `Text Default`}
     </ButtonStyled>
   );

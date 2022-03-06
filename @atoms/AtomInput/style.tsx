@@ -8,7 +8,7 @@ import { AtomInputTypes } from './types';
 //   display: flex;
 //   flex-direction: column;
 //   justify-content: center;
-//   font-size: ${({ fontsize }) => fontsize || `14px`};
+//   font-size: ${({ fontsize }) => fontsize || `12px`};
 //   width: ${({ width }) => width || `max-content`};
 // `;
 
@@ -19,7 +19,7 @@ import { AtomInputTypes } from './types';
 //   width: ${({ width }) => width || `250px`};
 //   height: max-content;
 //   color: ${({ colorLabel }) => colorLabel || `#47585d`};
-//   font-size: ${({ fontsize }) => fontsize || `14px`};
+//   font-size: ${({ fontsize }) => fontsize || `12px`};
 //   font-weight: 600;
 // `;
 
@@ -30,7 +30,7 @@ import { AtomInputTypes } from './types';
 //   width: ${({ width }) => width || `250px`};
 //   height: max-content;
 //   color: ${({ colorLabel }) => colorLabel || `#47585d`};
-//   font-size: ${({ fontsize }) => fontsize || `14px`};
+//   font-size: ${({ fontsize }) => fontsize || `12px`};
 //   font-weight: 600;
 //   fieldset {
 //     margin-top: 10px;
@@ -64,7 +64,7 @@ import { AtomInputTypes } from './types';
 //   height: max-content;
 //   width: ${({ width }) => width || `250px`};
 //   color: ${({ colorLabel }) => colorLabel || `#47585d`};
-//   font-size: ${({ fontsize }) => fontsize || `14px`};
+//   font-size: ${({ fontsize }) => fontsize || `12px`};
 //   font-weight: 500;
 // `;
 
@@ -75,13 +75,13 @@ import { AtomInputTypes } from './types';
 
 // export const CheckboxLabelStyled = styled.label<AtomInputTypes>`
 //   font-family: ${({ font }) => font || `'Montserrat', sans-serif`};
-//   margin: ${({ margin }) => margin || `10px 0px 0px 40px`};
+//   margin: ${({ margin }) => margin || `10px 0px 0px 30px`};
 //   display: flex;
 //   align-items: center;
 //   width: ${({ width }) => width || `max-content`};
 //   justify-content: center;
 //   height: max-content;
-//   font-size: ${({ fontsize }) => fontsize || `14px`};
+//   font-size: ${({ fontsize }) => fontsize || `12px`};
 //   font-weight: 600;
 //   color: ${({ colorLabel }) => colorLabel || `#47585d`};
 //   button {
@@ -102,7 +102,7 @@ import { AtomInputTypes } from './types';
 //   align-items: flex-start;
 //   justify-content: center;
 //   height: max-content;
-//   font-size: ${({ fontsize }) => fontsize || `14px`};
+//   font-size: ${({ fontsize }) => fontsize || `12px`};
 //   font-weight: 600;
 //   color: ${({ colorLabel }) => colorLabel || `#47585d`};
 //   margin: ${({ marginLabel }) => marginLabel || `0px 0px`};
@@ -113,15 +113,15 @@ import { AtomInputTypes } from './types';
 //   padding: 0px 10px;
 //   display: flex;
 //   width: 100%;
-//   height: ${({ height }) => height || `40px`};
-//   font-size: ${({ fontsize }) => fontsize || `14px`};
+//   height: ${({ height }) => height || `35px`};
+//   font-size: ${({ fontsize }) => fontsize || `12px`};
 //   font-weight: 500;
 //   border-radius: ${({ borderRadius }) => borderRadius || `10px`};
 //   border: ${({ border }) => border || `2px solid #c8d2dd;`};
 //   color: ${({ optionColor }) => optionColor || `#244a77`};
 //   option {
 //     margin: 5px 0px;
-//     font-size: ${({ fontsize }) => fontsize || `14px`};
+//     font-size: ${({ fontsize }) => fontsize || `12px`};
 //     font-weight: 600;
 //     color: ${({ optionColor }) => optionColor || `#75758b`};
 //     border: ${({ border }) => border || `2px solid #c8d2dd;`};
@@ -160,7 +160,7 @@ import { AtomInputTypes } from './types';
 //   height: ${({ height }) => height || `150px`};
 //   border-radius: 10px;
 //   border: 2px solid #c8d2dd;
-//   font-size: ${({ fontsize }) => fontsize || `14px`};
+//   font-size: ${({ fontsize }) => fontsize || `12px`};
 //   border-radius: ${({ borderRadius }) => borderRadius || `10px`};
 //   border: ${({ border }) => border || `2px solid #c8d2dd;`};
 //   font-weight: 500;
@@ -177,10 +177,10 @@ import { AtomInputTypes } from './types';
 //   padding: 0px 10px;
 //   display: flex;
 //   width: 100%;
-//   height: 40px;
+//   height: 30px;
 //   border-radius: 10px;
 //   border: 2px solid #c8d2dd;
-//   font-size: ${({ fontsize }) => fontsize || `14px`};
+//   font-size: ${({ fontsize }) => fontsize || `12px`};
 //   font-weight: 500;
 //   color: #244a77;
 //   div {
@@ -191,7 +191,7 @@ import { AtomInputTypes } from './types';
 //   }
 //   option {
 //     margin: 5px 0px;
-//     font-size: ${({ fontsize }) => fontsize || `14px`};
+//     font-size: ${({ fontsize }) => fontsize || `12px`};
 //     font-weight: 600;
 //     color: #75758b;
 //     border: 2px solid #c8d2dd;
@@ -209,7 +209,7 @@ import { AtomInputTypes } from './types';
 //   border-radius: 10px;
 //   background-color: #f6f7fb;
 //   border-radius: 4px;
-//   font-size: ${({ fontsize }) => fontsize || `14px`};
+//   font-size: ${({ fontsize }) => fontsize || `12px`};
 //   font-weight: 500;
 //   color: #a5a7ad;
 //   cursor: pointer;
@@ -264,29 +264,64 @@ export const InputTextLabelStyled = styled(motion.label)<AtomInputTypes>`
   ${({ customCSS }) => customCSS};
 `;
 
+export const InputCheckboxLabelStyled = styled(motion.label)<AtomInputTypes>`
+  display: flex;
+  flex-direction: column;
+  font-family: ${({ labelFontFamily }) =>
+    labelFontFamily || `'Montserrat', sans-serif`};
+  margin: ${({ labelMargin }) => labelMargin || `0px 0px 0px 0px`};
+  color: ${({ labelColor }) => labelColor || `black`};
+  width: ${({ labelWidth }) => labelWidth || `max-content`};
+  height: ${({ labelHeight }) => labelHeight || `max-content`};
+  font-size: ${({ labelFontSize }) => labelFontSize || `16px`};
+  text-align: ${({ labelTextAlign }) => labelTextAlign || `left`};
+  font-weight: ${({ labelFontWeight }) => labelFontWeight || `500`};
+  position: relative;
+
+  ${({ customCSS }) => customCSS};
+`;
+
 export const InputTextSpanStyled = styled.span<AtomInputTypes>`
   margin: ${({ spanMargin }) => spanMargin || `10px 0px 0px 0px`};
 `;
 
 export const InputTextStyled = styled(motion.input)<AtomInputTypes>`
   font-family: ${({ fontFamily }) => fontFamily || `'Montserrat', sans-serif`};
-  font-size: ${({ fontSize }) => fontSize || `14px`};
-  font-weight: ${({ fontWeight }) => fontWeight || `500`};
+  font-size: ${({ fontSize }) => fontSize || `12px`};
+  font-weight: ${({ fontWeight }) => fontWeight || `600`};
   margin: ${({ margin }) => margin || `0px 0px 0px 0px`};
   padding: ${({ padding }) => padding || `0px 0px 0px 15px`};
-  color: ${({ color }) => color || `black`};
+  color: ${({ color }) => color || `#1a1a1a`};
   ::placeholder {
-    color: ${({ placeholderColor }) => placeholderColor || `#d3d3d3`};
+    color: ${({ placeholderColor }) => placeholderColor || `#202124`};
   }
   background-color: ${({ backgroundColor }) => backgroundColor || `#ffffff`};
-  height: ${({ height }) => height || `40px`};
+  height: ${({ height }) => height || `35px`};
   width: ${({ width }) => width || `100%`};
   max-width: ${({ maxWidth }) => maxWidth || `100%`};
   border-radius: ${({ borderRadius }) => borderRadius || `4px`};
-  border: ${({ border }) => border || `1px solid #c8d2dd`};
+  border: ${({ border }) => border || `1px solid #f2f2f2`};
 `;
 
 export const InputCheckboxStyled = styled(motion.input)<AtomInputTypes>`
+  margin-right: 10px;
+  display: flex;
+  border: solid 1px #244a77;
+`;
+
+export const InputRadioButtonStyled = styled(motion.input)<AtomInputTypes>`
+  margin-right: 10px;
+  display: flex;
+  border: solid 1px #244a77;
+`;
+
+export const LabelRadioButtonStyled = styled(motion.label)<AtomInputTypes>`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
+export const InputCheckboxToggleStyled = styled(motion.input)<AtomInputTypes>`
   margin-right: 10px;
   display: flex;
   border: solid 1px #244a77;
@@ -311,7 +346,7 @@ export const FileInputStyled = styled(motion.label)<AtomInputTypes>`
 
   border-radius: ${({ borderRadius }) => borderRadius || `4px`};
   background-color: #f6f7fb;
-  font-size: ${({ fontSize }) => fontSize || `14px`};
+  font-size: ${({ fontSize }) => fontSize || `12px`};
   font-weight: 500;
   color: #a5a7ad;
   cursor: pointer;
@@ -337,15 +372,15 @@ export const InputSelectStyled = styled(motion.select)<AtomInputTypes>`
   padding: 0px 10px;
   display: flex;
   width: 100%;
-  height: ${({ height }) => height || `40px`};
-  font-size: ${({ fontSize }) => fontSize || `14px`};
+  height: ${({ height }) => height || `35px`};
+  font-size: ${({ fontSize }) => fontSize || `12px`};
   font-weight: 500;
   border-radius: ${({ borderRadius }) => borderRadius || `4px`};
   border: ${({ border }) => border || `2px solid #c8d2dd;`};
   color: ${({ optionColor }) => optionColor || `#75758b`};
   option {
     margin: 5px 0px;
-    font-size: ${({ fontSize }) => fontSize || `14px`};
+    font-size: ${({ fontSize }) => fontSize || `12px`};
     font-weight: 600;
     color: ${({ optionColor }) => optionColor || `#75758b`};
     border: ${({ border }) => border || `2px solid #c8d2dd;`};
@@ -465,13 +500,13 @@ export const SliderTrackStyled = styled(motion.div)<InputRangeProps>`
 
 export const InputTextBoxStyled = styled(motion.textarea)<AtomInputTypes>`
   font-family: ${({ fontFamily }) => fontFamily || `'Montserrat', sans-serif`};
-  font-size: ${({ fontSize }) => fontSize || `14px`};
+  font-size: ${({ fontSize }) => fontSize || `12px`};
   font-weight: ${({ fontWeight }) => fontWeight || `500`};
   margin: ${({ margin }) => margin || `0px 0px 0px 0px`};
   padding: ${({ padding }) => padding || `0px 0px 0px 15px`};
   color: ${({ color }) => color || `black`};
   ::placeholder {
-    color: ${({ placeholderColor }) => placeholderColor || `#d3d3d3`};
+    color: ${({ placeholderColor }) => placeholderColor || `#1a1a1a`};
   }
   background-color: ${({ backgroundColor }) => backgroundColor || `#ffffff`};
   height: ${({ height }) => height || `200px`};
@@ -479,4 +514,15 @@ export const InputTextBoxStyled = styled(motion.textarea)<AtomInputTypes>`
   max-width: ${({ maxWidth }) => maxWidth || `100%`};
   border-radius: ${({ borderRadius }) => borderRadius || `4px`};
   border: ${({ border }) => border || `1px solid #c8d2dd`};
+`;
+
+export const VideoPlayerStyledContainer = styled(motion.div)<AtomInputTypes>`
+  overflow: hidden;
+  max-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const VideoPlayerStyled = styled(motion.video)<AtomInputTypes>`
+  width: ${({ width }) => width || `100%`};
 `;

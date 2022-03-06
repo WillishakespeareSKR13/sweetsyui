@@ -2,12 +2,12 @@ import { SerializedStyles } from '@emotion/utils';
 import { Dispatch, SetStateAction } from 'react';
 
 export type StatePagination = {
-  hasnextpage?: boolean;
-  hasprevpage?: boolean;
-  limit?: number;
-  page?: number;
-  pagingcounter?: number;
-  totaldocs?: number;
+  page: number;
+  limit: number;
+  hasnextpage: boolean;
+  hasprevpage: boolean;
+  pagingcounter: number;
+  totaldocs: number;
 };
 
 export type AtomTableTypes<T extends object> = {

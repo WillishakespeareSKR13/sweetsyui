@@ -18,18 +18,23 @@ const RecursiveDropdown = (
   stylesText?: AtomTextTypes,
   stylesLink?: AtomLinkProps
 ) => {
+  const [actual, setActual] = useState(0);
   return (
     <AtomWrapper
       position="absolute"
       shadow
       backgroundColor="#fff"
-      maxWidth="100px"
       width="max-content"
       justifyContent="flex-start"
       alignItems="center"
       borderRadius="5px"
       padding="5px 0"
       customCSS={css`
+        * {
+          align-items: center !important;
+          justify-content: space-around !important;
+          align-text: center;
+        }
         ${recursive
           ? css`
               top: 0;
@@ -40,13 +45,19 @@ const RecursiveDropdown = (
               left: 50%;
             `}
         transform: translateX(-50%);
+        a {
+          width: 100%;
+          padding: 5px 10px;
+          font-width: bold;
+        }
         li {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 100%;
+          width: max-content;
           padding: 0px 4px;
         }
+        min-width: 130px;
       `}
       {...stylesWrapper}
     >
@@ -57,16 +68,22 @@ const RecursiveDropdown = (
               margin="0px"
               key={`${index + 1}`}
               onHoverEnd={() => setHover(false)}
-              onHoverStart={() => setHover(true)}
+              onHoverStart={() => {
+                setHover(true);
+                setActual(index);
+              }}
+              customCSS={css`
+                width: 100%;
+                padding: 5px 10px;
+              `}
             >
               <AtomText
                 fontSize="12px"
                 as="a"
                 {...link}
                 color="#7F7F7F"
-                padding="5px 15px"
-                margin="4px 0px"
-                align="right"
+                padding="5px 10px"
+                align="center"
                 fontWeight={600}
                 customCSS={css`
                   display: flex;
@@ -74,6 +91,12 @@ const RecursiveDropdown = (
                   align-items: center;
                   border-radius: 2px;
                   text-align: center;
+                  width: max-content;
+                  flex-grow: 1;
+                  align-items: center;
+                  justify-content: center;
+                  align-text: center;
+                  padding: 5px 10px;
                   :hover {
                     width: 100%;
                     background-color: #dadada;
@@ -94,7 +117,7 @@ const RecursiveDropdown = (
                   icon="https://storage.googleapis.com/cdn-bucket-ixulabs-commons/frontend-library/icons/arrow-down-3101.svg"
                 />
               </AtomText>
-              {link.subFields && hover && (
+              {link.subFields && hover && index === actual && (
                 <RecursiveDropdownHook data={link.subFields} recursive />
               )}
             </AtomLink>
@@ -104,7 +127,7 @@ const RecursiveDropdown = (
               as="a"
               {...link}
               color="#7F7F7F"
-              padding="5px 15px"
+              padding="5px 10px"
               margin="4px 0px"
               fontWeight={600}
               customCSS={css`
@@ -113,6 +136,8 @@ const RecursiveDropdown = (
                 align-items: center;
                 border-radius: 2px;
                 text-align: center;
+                width: 100%;
+                padding: 5px 10px;
                 :hover {
                   width: 100%;
                   background-color: #dadada;

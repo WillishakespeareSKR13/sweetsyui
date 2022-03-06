@@ -48,6 +48,7 @@ const InputCheckbox: FC<AtomInputTypes> = (props) => {
           {...Animation}
           id={label}
           name={id}
+          disabled={props.disabled}
           value={formik && id ? formik?.values[id] : value}
           onChange={formik ? formik?.handleChange : onChange}
           onBlur={formik?.handleBlur}

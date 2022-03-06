@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import lodash from 'lodash';
 import InputTextError from './error';
 import {
   InputOptionStyled,
@@ -56,8 +57,8 @@ const InputSelect: FC<AtomInputTypes> = (props) => {
       <InputSelectStyled
         value={
           formik && id
-            ? formik?.values[id]
-            : formik && id && formik?.values[id] === ''
+            ? lodash.get(formik?.values, id)
+            : formik && id && lodash.get(formik?.values, id) === ''
             ? 'DEFAULT'
             : value
         }

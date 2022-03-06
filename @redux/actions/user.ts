@@ -1,4 +1,4 @@
-import { IQuery } from 'graphql';
+import { IQuery } from '@types';
 
 type UserState = IQuery['me'];
 

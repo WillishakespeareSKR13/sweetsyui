@@ -37,7 +37,6 @@ export type OrganismAdminSidebarProps = {
     title?: string;
     textProps?: AtomTextTypes;
   };
-  component?: ReactNode;
   disableSidebar?: boolean;
 };
 
@@ -49,7 +48,7 @@ const OrganismAdminSidebar: FC<OrganismAdminSidebarProps> = (props) => {
     customLink,
     componentsProps,
     title,
-    component,
+    children,
     disableSidebar,
   } = props;
   const sideBar = useSelector((state: RootStateType) => state.sideBar);
@@ -161,7 +160,7 @@ const OrganismAdminSidebar: FC<OrganismAdminSidebarProps> = (props) => {
               {...componentsProps?.sidebarProps?.sidebarProps}
             />
           </AtomWrapper>
-          {component && component}
+          {children}
         </AtomWrapper>
         {showButtonClose && !disableSidebar && (
           <AtomButton
@@ -172,7 +171,7 @@ const OrganismAdminSidebar: FC<OrganismAdminSidebarProps> = (props) => {
               padding: 0px;
               justify-content: center;
               align-items: center;
-              background-color: ${sideBar ? `white` : `#a01d7f`};
+              background-color: ${sideBar ? `white` : `#f1576c`};
               box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
               width: 35px;
               height: 35px;

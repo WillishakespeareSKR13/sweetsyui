@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import lodash from 'lodash';
 import InputTextError from './error';
 import {
   InputTextLabelStyled,
@@ -45,7 +46,7 @@ const InputText: FC<AtomInputTypes> = (props) => {
       <InputTextStyled
         {...Animation}
         {...props}
-        value={formik?.values[`${id}`] ?? value}
+        value={lodash.get(formik?.values, id) ?? value}
         onChange={formik?.handleChange ?? onChange}
         onBlur={formik?.handleBlur}
       />

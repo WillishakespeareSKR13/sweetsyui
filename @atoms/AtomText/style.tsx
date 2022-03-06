@@ -6,7 +6,7 @@ import { AtomTextTypes } from './types';
 const TextStyle = (props: AtomTextTypes) => css`
   line-height: 150%;
   font-family: ${props?.font || `'Montserrat', sans-serif`};
-  color: ${props?.color || `black`};
+  color: ${props?.color || `#202124`};
   text-align: ${props?.align || `left`};
   padding: ${props?.padding || `0px 0px 0px 0px`};
   margin: ${props?.margin || `0px 0px 0px 0px`};
@@ -15,7 +15,10 @@ const TextStyle = (props: AtomTextTypes) => css`
   font-size: ${props?.fontSize || `14px`};
   font-weight: ${props?.fontWeight || 500};
   text-decoration: ${props?.textDecoration || `none`};
-  cursor: ${props?.cursor || `default`};
+  cursor: ${props?.cursor || `pointer`};
+  * {
+    cursor: ${props?.cursor || `pointer`};
+  }
 
   ${props?.customCSS};
 `;

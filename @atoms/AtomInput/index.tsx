@@ -6,6 +6,9 @@ import InputTextBox from './inputTexbox';
 import InputText from './inputText';
 import InputDragDrop from './inputDragDrop';
 import InputDragDropMultiple from './inputDragDropMultiple';
+import InputToggle from './inputToggle';
+import InputRadioButton from './inputRadioButton';
+import InputDragDropMultipleImages from './inputDragDropMultipleImages';
 import { AtomInputTypes } from './types';
 
 const Input: FC<AtomInputTypes> = (props) => {
@@ -23,6 +26,12 @@ const Input: FC<AtomInputTypes> = (props) => {
       return <InputDragDrop {...props} />;
     case `dragdropMultiple`:
       return <InputDragDropMultiple {...props} />;
+    case `dragdropMultipleImages`:
+      return <InputDragDropMultipleImages {...props} />;
+    case `toggle`:
+      return <InputToggle {...props} />;
+    case `radio`:
+      return <InputRadioButton {...props} />;
     default:
       return <InputText {...props} />;
   }

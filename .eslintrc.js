@@ -54,6 +54,7 @@ module.exports = {
     ],
     'import/extensions': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'import/no-extraneous-dependencies': 0,
+    'import/no-unresolved': 0,
     'react/jsx-filename-extension': [
       1,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },

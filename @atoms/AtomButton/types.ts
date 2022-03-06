@@ -6,6 +6,7 @@ export interface AtomButtonTypes extends MotionProps {
   width?: string;
   height?: string;
   type?: `button` | `submit` | `reset`;
+  disabled?: boolean;
   onClick?: (() => void) & React.MouseEventHandler<HTMLButtonElement>;
   onHoverStart?: (() => void) & React.MouseEventHandler<HTMLButtonElement>;
   onHoverEnd?: (() => void) & React.MouseEventHandler<HTMLButtonElement>;
@@ -73,4 +74,5 @@ export interface AtomButtonTypes extends MotionProps {
     | 'grabbing'
     | 'custom';
   customCSS?: SerializedStyles;
+  form?: string;
 }

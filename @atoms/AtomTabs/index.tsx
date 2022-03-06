@@ -10,6 +10,7 @@ interface AtomTabsProps {
     id?: string;
     title: string;
     content: React.ReactNode;
+    onClick?: () => void;
   }[];
 
   componentsProps?: {
@@ -48,7 +49,10 @@ const AtomTabs: FC<AtomTabsProps> = (props) => {
 
           return (
             <AtomButton
-              onClick={() => setActiveTab(index)}
+              onClick={() => {
+                setActiveTab(index);
+                tab?.onClick?.();
+              }}
               key={tab.id ?? index + 1}
               backgroundColor={index === activeTab ? '#00abb9' : '#b2b1af'}
               padding="10px 30px"

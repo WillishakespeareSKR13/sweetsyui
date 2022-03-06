@@ -7,6 +7,8 @@ import {
   FileInputStyled,
   InputTextLabelStyled,
   InputTextSpanStyled,
+  VideoPlayerStyled,
+  VideoPlayerStyledContainer,
 } from './style';
 import { AtomInputTypes } from './types';
 
@@ -23,6 +25,8 @@ const InputDragDrop: FC<AtomInputTypes> = (props) => {
     wrapperCustomCSS,
     imagePreview,
     placeholderDragDrop,
+    onChangeDrop,
+    video,
   } = props;
   const [preview, setPreview] = useState(``);
   const [dropActive, setDropActive] = useState(false);
@@ -51,6 +55,7 @@ const InputDragDrop: FC<AtomInputTypes> = (props) => {
       setPreview(url);
       setDropActive(false);
       formik?.setFieldValue(id, files[0]);
+      onChangeDrop?.(files[0]);
     } else {
       setPreview(``);
       setDropActive(false);
@@ -68,6 +73,7 @@ const InputDragDrop: FC<AtomInputTypes> = (props) => {
         setPreview(url);
         setDropActive(false);
         formik?.setFieldValue(id, files[0]);
+        onChangeDrop?.(files[0]);
       } else {
         setPreview(``);
         setDropActive(false);
@@ -151,18 +157,30 @@ const InputDragDrop: FC<AtomInputTypes> = (props) => {
             )}
           </AtomWrapper>
         )}
-        {preview !== `` && (
-          <AtomImage
-            alt="Drag and drop Preview"
-            src={preview}
-            customCSS={css`
-              border-radius: ${borderRadius || '4px'};
-              position: absolute;
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-            `}
-          />
+        {video ? (
+          <>
+            {preview !== `` && (
+              <VideoPlayerStyledContainer>
+                <VideoPlayerStyled muted autoPlay loop src={preview} />
+              </VideoPlayerStyledContainer>
+            )}
+          </>
+        ) : (
+          <>
+            {preview !== `` && (
+              <AtomImage
+                alt="Drag and drop Preview"
+                src={preview}
+                customCSS={css`
+                  border-radius: ${borderRadius || '4px'};
+                  position: absolute;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                `}
+              />
+            )}
+          </>
         )}
         <input
           type="file"

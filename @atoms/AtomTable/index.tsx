@@ -1,15 +1,46 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { css } from '@emotion/react';
-
 import AtomButton from '../AtomButton';
 import AtomIcon from '../AtomIcon';
-import AtomSeparator from '../AtomSeparator';
 import AtomText from '../AtomText';
 import AtomWrapper from '../AtomWrapper';
 import AtomInput from '../AtomInput';
 
 import { AtomTableStyled, AtomTbodyStyled, TDStyled } from './style';
 import { AtomTableTypes } from './types';
+
+const OptionsPagination = [
+  {
+    id: 'paginationKey0',
+    label: '5',
+    value: '5',
+  },
+  {
+    id: 'paginationKey1',
+    label: '10',
+    value: '10',
+  },
+  {
+    id: 'paginationKey1',
+    label: '25',
+    value: '25',
+  },
+  {
+    id: 'paginationKey1',
+    label: '50',
+    value: '50',
+  },
+  {
+    id: 'paginationKey1',
+    label: '75',
+    value: '75',
+  },
+  {
+    id: 'paginationKey1',
+    label: '100',
+    value: '100',
+  },
+];
 
 const Table = <T extends object>(props: AtomTableTypes<T>) => {
   const { columns, data, tableWidth, customCSS, state, dispatch } = props;
@@ -21,18 +52,20 @@ const Table = <T extends object>(props: AtomTableTypes<T>) => {
       padding="0px 0px"
       borderRadius="4px"
       overflowX="auto"
-      customCSS={css`
-        overflow-x: auto;
-        /* width */
-        ::-webkit-scrollbar {
-          height: 10px;
-        }
+      customCSS={
+        customCSS ??
+        css`
+          overflow-x: auto;
+          /* width */
+          ::-webkit-scrollbar {
+            height: 10px;
+          }
 
-        ::-webkit-scrollbar-thumb {
-          border-radius: 2px;
-        }
-        ${customCSS}
-      `}
+          ::-webkit-scrollbar-thumb {
+            border-radius: 2px;
+          }
+        `
+      }
     >
       <AtomTableStyled {...TableData}>
         <thead>
@@ -98,33 +131,9 @@ const Table = <T extends object>(props: AtomTableTypes<T>) => {
                     display: none;
                   }
                 `}
-                options={[
-                  {
-                    id: 'paginationKey1',
-                    label: '10',
-                    value: '10',
-                  },
-                  {
-                    id: 'paginationKey1',
-                    label: '25',
-                    value: '25',
-                  },
-                  {
-                    id: 'paginationKey1',
-                    label: '50',
-                    value: '50',
-                  },
-                  {
-                    id: 'paginationKey1',
-                    label: '75',
-                    value: '75',
-                  },
-                  {
-                    id: 'paginationKey1',
-                    label: '100',
-                    value: '100',
-                  },
-                ]}
+                options={OptionsPagination?.filter(
+                  (e) => Number(e.value) <= state.totaldocs
+                )}
                 onChange={(e) => {
                   dispatch?.({
                     ...state,
@@ -135,14 +144,14 @@ const Table = <T extends object>(props: AtomTableTypes<T>) => {
             </AtomWrapper>
             <AtomWrapper maxWidth="max-content" margin="0px 20px">
               <AtomText color="#4A4A49" fontWeight={500} align="center">
-                {(state.limit ?? 0) * (state?.page ?? 0) >
+                {(state.limit ?? 0) * (state?.page + 1 ?? 0) >
                 (state?.totaldocs ?? 0)
                   ? state?.totaldocs ?? 0
-                  : (state.limit ?? 0) * (state?.page ?? 0)}{' '}
+                  : (state.limit ?? 0) * (state?.page + 1 ?? 0)}{' '}
                 de {state?.totaldocs ?? 0}
               </AtomText>
               <AtomText color="#4A4A49" fontWeight={500} align="center">
-                Página {state?.page ?? 0} de{' '}
+                Página {state?.page + 1 ?? 0} de{' '}
                 {Math.ceil((state.totaldocs ?? 0) / (state.limit ?? 0))}
               </AtomText>
             </AtomWrapper>
@@ -193,7 +202,7 @@ const Table = <T extends object>(props: AtomTableTypes<T>) => {
               </AtomButton>
             </AtomWrapper>
           </AtomWrapper>
-          <AtomSeparator />
+          {/* <AtomSeparator /> */}
         </>
       )}
     </AtomWrapper>

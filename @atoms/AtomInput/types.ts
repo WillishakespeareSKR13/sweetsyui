@@ -3,12 +3,20 @@ import { SerializedStyles } from '@emotion/utils';
 import { FormikValues } from 'formik';
 import { ChangeEvent, KeyboardEvent, ReactNode } from 'react';
 
+export type ImagesArray = {
+  id: string;
+  url: string;
+  file: File;
+};
+
 export type AtomInputTypes = {
   type?:
     | 'password'
     | 'select'
+    | 'time'
     | 'selectBig'
     | 'checkbox'
+    | 'toggle'
     | 'email'
     | 'text'
     | 'search'
@@ -22,13 +30,18 @@ export type AtomInputTypes = {
     | 'file'
     | 'range'
     | 'dragdropMultiple'
-    | 'phone';
+    | 'dragdropMultipleImages'
+    | 'phone'
+    | 'color';
   formik?: FormikValues;
+  video?: boolean;
   disabled?: boolean;
   value?: string;
   dropActive?: boolean;
   autoComplete?: string;
   onChange?: (e: ChangeEvent<any>) => void;
+  onChangeDrop?: (e: File) => void;
+  onChangeImageEditor?: (value: { url: string; file: File }) => void;
   onUpdateValues?: (value: { min: number; max: number }) => void;
   onKeyUp?: (e: KeyboardEvent<any>) => void;
   onKeyPress?: (e: KeyboardEvent<any>) => void;
@@ -90,6 +103,7 @@ export type AtomInputTypes = {
   defaultText?: string;
 
   imagePreview?: string;
+  imagePreviewMultiple?: ImagesArray[];
   imagePreviewArray?: string[];
 
   // color?: "dark" | "light";
