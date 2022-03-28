@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 import { css } from '@emotion/react';
 import AtomContainer from '../AtomContainer';
 import AtomWrapper from '../AtomWrapper';
@@ -7,6 +7,7 @@ import { AtomContainerTypes } from '../AtomContainer/types';
 
 interface Props {
   isOpen?: boolean;
+  setIsOpen?: (isOpen: boolean) => void;
   component?: ReactNode;
   componentProps?: {
     containerProps?: AtomContainerTypes;
@@ -16,10 +17,25 @@ interface Props {
 }
 
 const AtomModal = (props: Props) => {
-  const { isOpen, component, componentProps, key } = props;
+  const { isOpen, setIsOpen, component, componentProps, key } = props;
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setIsOpen?.(isOpen);
+      }
+    };
+
+    document.addEventListener(`mousedown`, handleClickOutside);
+    return () => {
+      document.removeEventListener(`mousedown`, handleClickOutside);
+    };
+  }, [ref]);
+
   return isOpen ? (
     <AtomContainer
       key={key}
+      {...componentProps?.containerProps}
       customCSS={css`
         position: fixed;
         width: 100vw;
@@ -29,8 +45,8 @@ const AtomModal = (props: Props) => {
         background-color: #00000010;
         backdrop-filter: blur(12px);
         z-index: 9999;
+        ${componentProps?.containerProps?.customCSS}
       `}
-      {...componentProps?.containerProps}
     >
       <AtomWrapper
         backgroundColor="white"
@@ -41,6 +57,7 @@ const AtomModal = (props: Props) => {
         height="60%"
         borderRadius="4px"
         {...componentProps?.wrapperProps}
+        refObject={ref}
       >
         {component}
       </AtomWrapper>
