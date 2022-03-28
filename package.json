@@ -1,6 +1,6 @@
 {
   "name": "@sweetsyui/ui",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "build/index.js",
   "publishConfig": {
     "access": "public",
