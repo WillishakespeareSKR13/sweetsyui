@@ -19,7 +19,7 @@ interface AtomCarrousellType {
   swiperProps?: SwiperProps;
   slides?: JSX.Element[];
   children?: JSX.Element[];
-  placeholder?: JSX.Element;
+  skeleton?: JSX.Element | boolean;
   direction?: 'horizontal' | 'vertical';
   slidesPerView?: number;
   acentColor?: string;
@@ -37,7 +37,7 @@ const AtomCarrousell: FC<AtomCarrousellType> = (props) => {
     slidesPerView,
     acentColor,
     slides,
-    placeholder,
+    skeleton,
   } = props;
   return (
     <AtomWrapper
@@ -95,7 +95,7 @@ const AtomCarrousell: FC<AtomCarrousellType> = (props) => {
         slidesPerView={slidesPerView || 1}
         {...swiperProps}
       >
-        {placeholder && <SwiperSlide>{placeholder}</SwiperSlide>}
+        {skeleton && <SwiperSlide>{skeleton}</SwiperSlide>}
         {slides?.map((item) => (
           <SwiperSlide key={item?.key}>{item}</SwiperSlide>
         ))}
