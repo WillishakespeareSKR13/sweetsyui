@@ -96,8 +96,8 @@ const AtomCarrousell: FC<AtomCarrousellType> = (props) => {
         {[slides]?.flat()?.map((item) => (
           <SwiperSlide key={item?.key}>{item}</SwiperSlide>
         ))}
-        {[children]?.flat()?.map((item) => (
-          <SwiperSlide key={item?.toString()}>{item}</SwiperSlide>
+        {[children]?.flat()?.map((item, idx) => (
+          <SwiperSlide key={`${idx + 1}`}>{item}</SwiperSlide>
         ))}
       </Swiper>
     </AtomWrapper>
