@@ -17,8 +17,9 @@ interface AtomCarrousellType {
   height?: string;
   customCSS?: SerializedStyles;
   swiperProps?: SwiperProps;
-  slides?: JSX.Element[] | JSX.Element;
-  children?: JSX.Element[] | JSX.Element;
+  slides?: JSX.Element[];
+  children?: JSX.Element[];
+  placeholder?: JSX.Element;
   direction?: 'horizontal' | 'vertical';
   slidesPerView?: number;
   acentColor?: string;
@@ -36,6 +37,7 @@ const AtomCarrousell: FC<AtomCarrousellType> = (props) => {
     slidesPerView,
     acentColor,
     slides,
+    placeholder,
   } = props;
   return (
     <AtomWrapper
@@ -93,11 +95,12 @@ const AtomCarrousell: FC<AtomCarrousellType> = (props) => {
         slidesPerView={slidesPerView || 1}
         {...swiperProps}
       >
-        {[slides]?.flat()?.map((item) => (
+        {placeholder && <SwiperSlide>{placeholder}</SwiperSlide>}
+        {slides?.map((item) => (
           <SwiperSlide key={item?.key}>{item}</SwiperSlide>
         ))}
-        {[children]?.flat()?.map((item, idx) => (
-          <SwiperSlide key={`${idx + 1}`}>{item}</SwiperSlide>
+        {children?.map((item) => (
+          <SwiperSlide key={item?.key}>{item}</SwiperSlide>
         ))}
       </Swiper>
     </AtomWrapper>
