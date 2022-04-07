@@ -15,9 +15,9 @@ const TextStyle = (props: AtomTextTypes) => css`
   font-size: ${props?.fontSize || `14px`};
   font-weight: ${props?.fontWeight || 500};
   text-decoration: ${props?.textDecoration || `none`};
-  cursor: ${props?.cursor || `pointer`};
+  cursor: ${props?.cursor || `default`};
   * {
-    cursor: ${props?.cursor || `pointer`};
+    cursor: ${props?.cursor || `default`};
   }
 
   ${props?.customCSS};
