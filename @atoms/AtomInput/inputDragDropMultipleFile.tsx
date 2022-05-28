@@ -1,59 +1,51 @@
+import { DragEvent, FC, FormEvent, useEffect, useRef, useState } from 'react';
 import { css } from '@emotion/react';
-import { DragEvent, FC, FormEvent, useEffect, useState } from 'react';
-
-import AtomImage from '../AtomImage';
-import AtomText from '../AtomText';
+import { v4 as uuidv4 } from 'uuid';
 import AtomWrapper from '../AtomWrapper';
+import AtomImage from '../AtomImage';
+import AtomButton from '../AtomButton';
 import InputTextError from './error';
+import AtomIcon from '../AtomIcon';
 import {
-  FileInputStyled,
+  FileInputMultipleStyled,
   InputTextLabelStyled,
   InputTextSpanStyled,
 } from './style';
-import { AtomInputTypes } from './types';
+import { AtomInputTypes, FilesArray } from './types';
+import AtomText from '../AtomText';
 
 const Animation = {
   whileHover: { scale: 1.02, transition: { duration: 0.3 } },
   whileTap: { scale: 0.98, opacity: 0.8 },
 };
-type Props = AtomInputTypes & {
-  heightpreview?: string;
-};
-const InputDragDropMultiple: FC<Props> = (props) => {
-  const { id, children, formik, wrapperCustomCSS, imagePreviewArray } = props;
-  const [preview, setPreview] = useState<string[]>([]);
+
+const InputDragDropMultipleFiles: FC<AtomInputTypes> = (props) => {
+  const { id, children, formik, wrapperCustomCSS } = props;
   const [dropActive, setDropActive] = useState(false);
+  const [filter, setFilter] = useState<FilesArray[] | false>(false);
+
+  const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (imagePreviewArray) {
-      setPreview(imagePreviewArray);
+    if (filter !== false && formik) {
+      formik.setFieldValue(id, filter);
+      setFilter(false);
     }
-  }, [imagePreviewArray]);
-
-  useEffect(() => {
-    if (formik?.values[`${id}`]) {
-      setPreview(formik?.values[`${id}`].map((item) => item.url));
-      setDropActive(false);
-    } else {
-      setPreview([]);
-      setDropActive(false);
-    }
-  }, [formik?.values[`${id}`]]);
+  }, [filter]);
 
   const Drop = (e: DragEvent<HTMLLabelElement>) => {
     e.preventDefault();
     e.stopPropagation();
     const { files } = e.dataTransfer;
     if (files.length !== 0) {
-      const urlArray = Array.from(files).map((file: File) => {
-        const url = URL?.createObjectURL(file);
-        return { url, file };
-      });
-      formik?.setFieldValue(id, urlArray);
-      setPreview(urlArray.map((item) => item.url));
+      const filesFilter = Array.from(files).map((i) => ({
+        id: uuidv4(),
+        file: i,
+      }));
+      const group = [...formik?.values[`${id}`], ...filesFilter];
+      formik?.setFieldValue(id, group);
       setDropActive(false);
     } else {
-      setPreview([]);
       setDropActive(false);
       formik?.setFieldValue(id, ``);
     }
@@ -65,20 +57,20 @@ const InputDragDropMultiple: FC<Props> = (props) => {
 
     if (files) {
       if (files.length !== 0) {
-        const urlArray = Array.from(files).map((file: File) => {
-          const url = URL?.createObjectURL(file);
-          return { url, file };
-        });
-        formik?.setFieldValue(id, urlArray);
-        setPreview(urlArray.map((item) => item.url));
+        const filesFilter = Array.from(files).map((i) => ({
+          id: uuidv4(),
+          file: i,
+        }));
+        const group = [...formik?.values[`${id}`], ...filesFilter];
+        formik?.setFieldValue(id, group);
         setDropActive(false);
       } else {
-        setPreview([]);
         setDropActive(false);
         formik?.setFieldValue(id, ``);
       }
     }
   };
+
   const handleDrag = (e: DragEvent<HTMLLabelElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -94,9 +86,8 @@ const InputDragDropMultiple: FC<Props> = (props) => {
     spanMargin,
     customCSS,
     label,
-    borderRadius,
-    heightpreview,
   } = props;
+
   return (
     <InputTextLabelStyled
       labelWidth={labelWidth}
@@ -113,7 +104,7 @@ const InputDragDropMultiple: FC<Props> = (props) => {
           {label}
         </InputTextSpanStyled>
       )}
-      <FileInputStyled
+      <FileInputMultipleStyled
         dropActive={dropActive}
         htmlFor={id}
         onDrop={Drop}
@@ -131,7 +122,7 @@ const InputDragDropMultiple: FC<Props> = (props) => {
         {...props}
         {...Animation}
       >
-        {preview.length === 0 && (
+        {formik?.values[`${id}`].length === 0 && (
           <AtomWrapper flexDirection="row" customCSS={wrapperCustomCSS}>
             {!dropActive ? (
               <>
@@ -149,7 +140,8 @@ const InputDragDropMultiple: FC<Props> = (props) => {
             )}
           </AtomWrapper>
         )}
-        {preview.length > 0 && preview.find((_, idx) => idx === 0) && (
+
+        {formik?.values[`${id}`].length > 0 && (
           <AtomWrapper
             customCSS={css`
               top: 0;
@@ -159,78 +151,103 @@ const InputDragDropMultiple: FC<Props> = (props) => {
               flex-direction: column;
               align-items: center;
               justify-content: flex-start;
+              z-index: 10;
             `}
           >
-            <AtomImage
-              alt="Drag and drop Preview"
-              src={`${preview.find((_, idx) => idx === 0)}`}
-              customCSS={css`
-                border-radius: ${borderRadius || '4px'};
-                width: 100%;
-                height: ${heightpreview || '100%'};
-                padding: 5px;
-                object-fit: cover;
-              `}
-            />
             <AtomWrapper
               customCSS={css`
-                flex-direction: row;
-                height: 30%;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                height: 100%;
+                flex-wrap: wrap;
+                gap: 5px;
+                overflow: hidden;
               `}
             >
-              {preview
-                .filter((_, idx) => idx !== 0 && idx < 5)
-                .map((e) => (
-                  <AtomImage
-                    key={`${e}moreimages`}
-                    alt="Drag and drop Preview"
-                    src={`${e}`}
-                    customCSS={css`
-                      border-radius: ${borderRadius || '4px'};
-                      width: 100%;
-                      height: 100%;
-                      object-fit: cover;
-                      margin: 5px;
-                    `}
-                  />
-                ))}
-              {preview.length > 5 && (
+              {formik?.values[`${id}`].map((e: FilesArray) => (
                 <AtomWrapper
+                  key={e.id}
+                  {...Animation}
                   customCSS={css`
+                    width: 100%;
+                    min-height: 25px;
+                    max-height: 100%;
+                    position: relative;
                     align-items: center;
-                    justify-content: center;
-                    height: 100%;
-                    margin: 5px;
-                    background-color: ${props.color || '#00abb9'};
                   `}
                 >
-                  <AtomText
+                  <AtomText width="80%">{e?.file?.name}</AtomText>
+                  <AtomButton
                     customCSS={css`
-                      font-size: 18px;
-                      color: white;
-                      margin: 0px;
-                      padding: 0px;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      position: absolute;
+                      background: #e52d27;
+                      border-radius: 50%;
+                      width: 22px;
+                      height: 22px;
+                      padding: 0;
+                      right: 2px;
+                      top: 0px;
                     `}
+                    onClick={() => {
+                      const filterArray = formik?.values[`${id}`].filter(
+                        (e2: FilesArray) => e2.id !== e.id
+                      );
+                      setFilter(filterArray);
+                    }}
+                    type="button"
                   >
-                    +{preview.length - 5}
-                  </AtomText>
+                    <AtomIcon
+                      height="17px"
+                      color="transparent"
+                      icon="https://storage.googleapis.com/cdn-bucket-ixulabs-platform/assets/svgs/JRO-0001/icons/Component%20199%20%E2%80%93%202.svg"
+                      customCSS={css`
+                        svg {
+                          g {
+                            path {
+                              stroke: #fff;
+                            }
+                          }
+                        }
+                      `}
+                    />
+                  </AtomButton>
                 </AtomWrapper>
-              )}
+              ))}
             </AtomWrapper>
           </AtomWrapper>
         )}
         <input
+          ref={ref}
           type="file"
           multiple
           id={id}
           onChange={DropInput}
           style={{ width: '100%', height: '100%' }}
+          accept="*/*"
         />
-      </FileInputStyled>
+      </FileInputMultipleStyled>
+      <AtomButton
+        type="button"
+        width="100%"
+        backgroundColor="#f6f7fb"
+        border="1px solid #c4c4c4"
+        color="#707070"
+        fontWeight="500"
+        margin="10px 0px 0px 0px"
+        onClick={() => {
+          ref?.current?.click();
+        }}
+      >
+        Cargar archivos
+      </AtomButton>
       {children}
       <InputTextError {...props} />
     </InputTextLabelStyled>
   );
 };
 
-export default InputDragDropMultiple;
+export default InputDragDropMultipleFiles;

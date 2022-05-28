@@ -103,8 +103,11 @@ const AtomFilterSearch: FC<AtomFilterSearchTypes> = (props) => {
         border="1px solid #fe6a6a"
         padding="7px 25px"
         margin="15px 0px 0px 0px"
-        onClick={handleOnClick}
         {...componentsProps?.buttonProps}
+        onClick={() => {
+          handleOnClick();
+          componentsProps?.buttonProps?.onClick();
+        }}
         customCSS={css`
           @media only screen and (max-width: 1200px) {
             margin: 15px 0px 0px 20px;

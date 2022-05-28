@@ -1,6 +1,8 @@
 import { FC } from 'react';
+import { css } from '@emotion/react';
 import { ButtonStyled } from './styled';
 import { AtomButtonTypes } from './types';
+import AtomLoader from '../AtomLoader';
 
 const Animation = {
   whileHover: { scale: 1.02, transition: { duration: 0.3 } },
@@ -8,10 +10,31 @@ const Animation = {
 };
 
 const AtomButton: FC<AtomButtonTypes> = (props) => {
-  const { children, disabled } = props;
+  const { children, disabled, refObject, loading } = props;
   return (
-    <ButtonStyled {...(disabled ? {} : Animation)} {...props}>
-      {children || `Text Default`}
+    <ButtonStyled ref={refObject} {...(disabled ? {} : Animation)} {...props}>
+      {loading ? (
+        <AtomLoader
+          isLoading
+          type="small"
+          colorLoading="white"
+          widthLoader="2px"
+          customCSS={css`
+            width: 100%;
+            .lds-ring {
+              width: 15px;
+              height: 15px;
+              div {
+                margin: 1px 2px;
+                width: 14px;
+                height: 14px;
+              }
+            }
+          `}
+        />
+      ) : (
+        <>{children || `Text Default`}</>
+      )}
     </ButtonStyled>
   );
 };

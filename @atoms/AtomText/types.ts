@@ -8,18 +8,19 @@ export type AtomTextTypes = MotionProps & {
   color?: string;
   font?: string;
   href?: string;
-  align?: 'center' | 'left' | 'right';
+  align?: 'center' | 'left' | 'right' | 'inherit';
   padding?: string;
   margin?: string;
   width?: string;
   maxWidth?: string;
   fontSize?: string;
-  textDecoration?: 'underline' | 'line-through' | 'none';
+  textDecoration?: 'underline' | 'line-through' | 'none' | 'inherit';
   ref?: Ref<any>;
   fontWeight?:
     | 'bold'
     | 'normal'
     | 'light'
+    | 'inherit'
     | 'semibold'
     | 100
     | 200
@@ -33,6 +34,7 @@ export type AtomTextTypes = MotionProps & {
   cursor?:
     | 'pointer'
     | 'default'
+    | 'inherit'
     | 'text'
     | 'wait'
     | 'move'

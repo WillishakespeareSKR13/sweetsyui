@@ -1,6 +1,6 @@
-import { IMember } from 'graphql';
 import { Reducer } from 'redux';
 import cookies from 'js-cookie';
+import { IMember } from '@types';
 
 const TypesReducers = {
   SETUSER: (_: IMember, payload: IMember) => payload,

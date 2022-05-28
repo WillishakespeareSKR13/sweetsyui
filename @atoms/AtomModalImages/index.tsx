@@ -60,66 +60,75 @@ const AtomModalImage: FC<AtomModalImageProps> = (props) => {
         },
       }}
       component={
-        <AtomWrapper
-          maxWidth="100%"
-          alignItems="center"
-          justifyContent="center"
-          flexDirection="row"
-        >
+        <AtomWrapper alignItems="flex-end">
           <AtomButton
-            padding="0px 0px"
             backgroundColor="transparent"
-            customCSS={css`
-              margin-right: 22px;
-            `}
-            onClick={() => {
-              const newSelected = (selected ?? 0) - 1;
-              const length = (images?.length ?? 0) - 1;
-              setSelected?.(newSelected < 0 ? length : newSelected);
-            }}
+            fontSize="30px"
+            onClick={() => setState(false)}
           >
-            <AtomIcon
-              height="30px"
-              icon="https://storage.googleapis.com/cdn-bucket-ixulabs-commons/frontend-library/icons/arrowleft.svg"
-              color="white"
-              customCSS={css`
-                transform: rotate(180deg);
-              `}
-            />
+            X
           </AtomButton>
-          {images?.find((_, idx) => idx === selected) && (
-            <AtomImage
-              {...animation}
-              key={selected}
-              height="70vh"
-              width="60vw"
-              alt="image"
-              src={`${images?.find((_, idx) => idx === selected)}`}
-              customCSS={css`
-                img {
-                  object-fit: contain;
-                }
-              `}
-            />
-          )}
-          <AtomButton
-            padding="0px 0px"
-            backgroundColor="transparent"
-            customCSS={css`
-              margin-left: 22px;
-            `}
-            onClick={() => {
-              const newSelected = (selected ?? 0) + 1;
-              const length = (images?.length ?? 0) - 1;
-              setSelected?.(newSelected > length ? 0 : newSelected);
-            }}
+          <AtomWrapper
+            maxWidth="100%"
+            alignItems="center"
+            justifyContent="center"
+            flexDirection="row"
           >
-            <AtomIcon
-              height="30px"
-              icon="https://storage.googleapis.com/cdn-bucket-ixulabs-commons/frontend-library/icons/arrowleft.svg"
-              color="white"
-            />
-          </AtomButton>
+            <AtomButton
+              padding="0px 0px"
+              backgroundColor="transparent"
+              customCSS={css`
+                margin-right: 22px;
+              `}
+              onClick={() => {
+                const newSelected = (selected ?? 0) - 1;
+                const length = (images?.length ?? 0) - 1;
+                setSelected?.(newSelected < 0 ? length : newSelected);
+              }}
+            >
+              <AtomIcon
+                height="30px"
+                icon="https://storage.googleapis.com/cdn-bucket-ixulabs-commons/frontend-library/icons/arrowleft.svg"
+                color="white"
+                customCSS={css`
+                  transform: rotate(180deg);
+                `}
+              />
+            </AtomButton>
+            {images?.find((_, idx) => idx === selected) && (
+              <AtomImage
+                {...animation}
+                key={selected}
+                height="70vh"
+                width="60vw"
+                alt="image"
+                src={`${images?.find((_, idx) => idx === selected)}`}
+                customCSS={css`
+                  img {
+                    object-fit: contain;
+                  }
+                `}
+              />
+            )}
+            <AtomButton
+              padding="0px 0px"
+              backgroundColor="transparent"
+              customCSS={css`
+                margin-left: 22px;
+              `}
+              onClick={() => {
+                const newSelected = (selected ?? 0) + 1;
+                const length = (images?.length ?? 0) - 1;
+                setSelected?.(newSelected > length ? 0 : newSelected);
+              }}
+            >
+              <AtomIcon
+                height="30px"
+                icon="https://storage.googleapis.com/cdn-bucket-ixulabs-commons/frontend-library/icons/arrowleft.svg"
+                color="white"
+              />
+            </AtomButton>
+          </AtomWrapper>
         </AtomWrapper>
       }
     />

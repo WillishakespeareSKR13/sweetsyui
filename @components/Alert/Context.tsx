@@ -6,7 +6,7 @@ export const ContextAlert = createContext({} as IContextAlertProps);
 
 export const useAlert = () => {
   const { alert, setAlert } = useContext(ContextAlert);
-  const insertAlert = (newAlert: AlertProps) => {
+  const insertAlert = (newAlert?: AlertProps) => {
     const newAlertID = {
       ...newAlert,
       id: uuidv4(),

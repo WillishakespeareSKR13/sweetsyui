@@ -9,6 +9,12 @@ export type ImagesArray = {
   file: File;
 };
 
+export type FilesArray = {
+  id: string;
+  url?: string;
+  file: File;
+};
+
 export type AtomInputTypes = {
   type?:
     | 'password'
@@ -32,14 +38,18 @@ export type AtomInputTypes = {
     | 'dragdropMultiple'
     | 'dragdropMultipleImages'
     | 'phone'
-    | 'color';
+    | 'color'
+    | 'dragDropFile'
+    | 'dragdropMultipleFiles';
   formik?: FormikValues;
   video?: boolean;
+  heightpreview?: string;
   disabled?: boolean;
   value?: string;
   dropActive?: boolean;
   autoComplete?: string;
   onChange?: (e: ChangeEvent<any>) => void;
+  onBlur?: (e: any) => void;
   onChangeDrop?: (e: File) => void;
   onChangeImageEditor?: (value: { url: string; file: File }) => void;
   onUpdateValues?: (value: { min: number; max: number }) => void;
@@ -62,7 +72,7 @@ export type AtomInputTypes = {
   labelColor?: string;
   labelPadding?: string;
   labelFontSize?: string;
-  labelFontWeight?: string;
+  labelFontWeight?: string | number;
   labelFontFamily?: string;
 
   spanMargin?: string;
@@ -105,7 +115,7 @@ export type AtomInputTypes = {
   imagePreview?: string;
   imagePreviewMultiple?: ImagesArray[];
   imagePreviewArray?: string[];
-
+  accentColor?: string;
   // color?: "dark" | "light";
   // placeholder?: string;
   // id?: string;
@@ -136,4 +146,5 @@ export type AtomInputTypes = {
   customCSS?: SerializedStyles;
   wrapperCustomCSS?: SerializedStyles;
   typeFile?: string;
+  step?: string | number;
 };

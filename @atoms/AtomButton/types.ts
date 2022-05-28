@@ -1,13 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SerializedStyles } from '@emotion/utils/types/index';
 import { MotionProps } from 'framer-motion';
+import { PointerEventHandler, RefObject } from 'react';
 
 export interface AtomButtonTypes extends MotionProps {
   color?: string;
   width?: string;
   height?: string;
+  loading?: boolean;
   type?: `button` | `submit` | `reset`;
   disabled?: boolean;
   onClick?: (() => void) & React.MouseEventHandler<HTMLButtonElement>;
+  onPointerDown?: PointerEventHandler<HTMLButtonElement>;
   onHoverStart?: (() => void) & React.MouseEventHandler<HTMLButtonElement>;
   onHoverEnd?: (() => void) & React.MouseEventHandler<HTMLButtonElement>;
   padding?: string;
@@ -75,4 +79,5 @@ export interface AtomButtonTypes extends MotionProps {
     | 'custom';
   customCSS?: SerializedStyles;
   form?: string;
+  refObject?: RefObject<any>;
 }

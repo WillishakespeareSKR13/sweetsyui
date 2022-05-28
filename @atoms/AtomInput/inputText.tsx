@@ -13,7 +13,7 @@ const Animation = {
 };
 
 const InputText: FC<AtomInputTypes> = (props) => {
-  const { value, onChange, formik, id, children } = props;
+  const { value, onChange, onBlur, formik, id, children } = props;
   const {
     labelWidth,
     labelColor,
@@ -25,6 +25,7 @@ const InputText: FC<AtomInputTypes> = (props) => {
     spanMargin,
     customCSS,
     label,
+    step,
   } = props;
   return (
     <InputTextLabelStyled
@@ -48,7 +49,11 @@ const InputText: FC<AtomInputTypes> = (props) => {
         {...props}
         value={lodash.get(formik?.values, id) ?? value}
         onChange={formik?.handleChange ?? onChange}
-        onBlur={formik?.handleBlur}
+        onBlur={(e) => {
+          formik?.handleBlur(e);
+          onBlur?.(e);
+        }}
+        step={step}
       />
       {children}
       <InputTextError {...props} />

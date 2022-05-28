@@ -24,6 +24,8 @@ export const LinkStyled = styled(motion.li)<LinkStyledProps>`
   justify-content: center;
   width: max-content;
   flex-direction: row;
+  background: transparent;
+  border: none;
   margin: ${(props) => props.margin || '0px 25px 0px 0px'};
   cursor: pointer;
   position: relative;

@@ -5,11 +5,7 @@ import {
   AtomImageStyled,
   AtomImageWrapperStyled,
 } from './style';
-import { AtomImageTypes, AtomNextImageTypes } from './types';
-
-interface AtomImageProps extends AtomNextImageTypes, AtomImageTypes {
-  isNextImage?: boolean;
-}
+import { AtomImageProps } from './types';
 
 const Image: FC<AtomImageProps> = (props) => {
   const { src, alt, isNextImage } = props;

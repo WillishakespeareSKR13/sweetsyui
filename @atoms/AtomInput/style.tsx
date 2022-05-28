@@ -307,6 +307,9 @@ export const InputCheckboxStyled = styled(motion.input)<AtomInputTypes>`
   margin-right: 10px;
   display: flex;
   border: solid 1px #244a77;
+  :checked {
+    accent-color: ${({ accentColor }) => accentColor || `#005cc8`};
+  }
 `;
 
 export const InputRadioButtonStyled = styled(motion.input)<AtomInputTypes>`
@@ -341,7 +344,36 @@ export const InputErrorStyled = styled.span<AtomInputTypes>`
 export const FileInputStyled = styled(motion.label)<AtomInputTypes>`
   display: flex;
   width: ${({ width }) => width || `250px`};
-  height: ${({ height }) => height || `200px`};
+  height: ${({ height }) => height || `40px`};
+  position: relative;
+
+  border-radius: ${({ borderRadius }) => borderRadius || `4px`};
+  background-color: #f6f7fb;
+  font-size: ${({ fontSize }) => fontSize || `12px`};
+  font-weight: 500;
+  color: #a5a7ad;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ${({ dropActive }) =>
+    dropActive &&
+    css`
+      border: 2px solid white;
+      background-color: #dadada;
+      color: white;
+    `}
+  input {
+    opacity: 0;
+    position: absolute;
+    z-index: 1;
+  }
+`;
+
+export const FileInputMultipleStyled = styled(motion.label)<AtomInputTypes>`
+  display: flex;
+  width: ${({ width }) => width || `250px`};
+  height: ${({ height }) => height || `250px`};
   position: relative;
 
   border-radius: ${({ borderRadius }) => borderRadius || `4px`};

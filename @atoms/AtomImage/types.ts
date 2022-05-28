@@ -28,3 +28,7 @@ export interface AtomImageTypes extends MotionProps {
   zIndex?: string;
   customCSS?: SerializedStyles;
 }
+
+export interface AtomImageProps extends AtomNextImageTypes, AtomImageTypes {
+  isNextImage?: boolean;
+}

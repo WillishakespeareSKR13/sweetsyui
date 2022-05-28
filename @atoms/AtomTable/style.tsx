@@ -22,13 +22,14 @@ export const AtomTableStyled = styled.table<AtomTableTypes<Types>>`
     height: fit-content;
     text-align: center;
     background-color: white;
+    border-bottom: 1px solid #eeeeee;
     th {
       font-family: 'Montserrat', sans-serif;
       text-align: left;
       color: #565656;
       font-size: 14px;
       font-weight: 700;
-      padding: 15px 30px 10px 30px;
+      padding: 15px 30px 15px 30px;
       span {
         font-size: 8px;
       }
@@ -47,10 +48,11 @@ export const AtomTbodyStyled = styled.tbody<Types>`
     border-bottom: 1px solid #eeeeee;
   }
   tr {
+    background-color: #fefefe;
     transition: all 0.3s ease-in-out;
   }
   tr:hover {
-    background-color: #f5f5f5;
+    background-color: #fafafa;
   }
 `;
 

@@ -12,7 +12,7 @@ const Animation = {
 };
 
 const InputTextBox: FC<AtomInputTypes> = (props) => {
-  const { value, onChange, formik, id, children } = props;
+  const { value, onChange, onBlur, formik, id, children } = props;
   const {
     labelWidth,
     labelColor,
@@ -47,7 +47,10 @@ const InputTextBox: FC<AtomInputTypes> = (props) => {
         {...props}
         value={formik?.values[`${id}`] ?? value}
         onChange={formik?.handleChange ?? onChange}
-        onBlur={formik?.handleBlur}
+        onBlur={(e) => {
+          formik?.handleBlur(e);
+          onBlur?.(e);
+        }}
       />
       {children}
       <InputTextError {...props} />

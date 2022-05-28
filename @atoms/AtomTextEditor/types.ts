@@ -1,5 +1,6 @@
 import { FormikValues } from 'formik';
 import { Editor } from '@tiptap/core';
+import { FocusEventHandler } from 'react';
 
 export type AtomTextEditorType = {
   content?: string;
@@ -7,7 +8,7 @@ export type AtomTextEditorType = {
   id?: string;
   maxWidth?: string;
   onChangeEditor?: (content: Editor) => void;
-
+  onBlur?: FocusEventHandler;
   errorColor?: string;
   errorFontSize?: string;
   errorFontWeight?: string;

@@ -4,11 +4,19 @@ import FontsStyled from './_fonts';
 
 type Props = {
   scrollbarColor?: string;
+  scrollbarWidth?: string;
 };
 
-const StylesGlobal: FC<Props> = ({ children, scrollbarColor }) => (
+const StylesGlobal: FC<Props> = ({
+  children,
+  scrollbarColor,
+  scrollbarWidth,
+}) => (
   <>
-    <NormalizerStyled scrollbarColor={scrollbarColor} />
+    <NormalizerStyled
+      scrollbarColor={scrollbarColor}
+      scrollbarWidth={scrollbarWidth}
+    />
     <FontsStyled />
     {children}
   </>

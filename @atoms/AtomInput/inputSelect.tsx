@@ -23,7 +23,7 @@ const DefaultAnimation = {
 };
 
 const InputSelect: FC<AtomInputTypes> = (props) => {
-  const { value, onChange, formik, id, children } = props;
+  const { value, onChange, onBlur, formik, id, children } = props;
   const {
     labelWidth,
     labelColor,
@@ -63,7 +63,10 @@ const InputSelect: FC<AtomInputTypes> = (props) => {
             : value
         }
         onChange={formik ? formik?.handleChange : onChange}
-        onBlur={formik?.handleBlur}
+        onBlur={(e) => {
+          formik?.handleBlur(e);
+          onBlur?.(e);
+        }}
         {...props}
         {...Animation}
       >

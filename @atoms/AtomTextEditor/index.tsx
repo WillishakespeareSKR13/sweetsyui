@@ -475,6 +475,7 @@ const MenuBar: FC<MenuBarType> = (props) => {
                       setImage(e);
                     }}
                   />
+
                   <AtomWrapper
                     margin="10px"
                     customCSS={css`
@@ -525,6 +526,11 @@ const MenuBar: FC<MenuBarType> = (props) => {
                             .setImage({ src: image })
                             .run();
                           setImage({} as File);
+                          setLoadingFile(true);
+                          setTimeout(() => {
+                            setLoadingFile(false);
+                            setIsOpen(false);
+                          }, 500);
                         } else if (image.name) {
                           setLoadingFile(true);
                           await uploadImage(image, {
@@ -624,6 +630,7 @@ const MenuBar: FC<MenuBarType> = (props) => {
                 labelWidth="100%"
                 width="90%"
                 type="text"
+                value={url as string}
                 onChange={(e) => {
                   setUrl(e.target.value);
                 }}
@@ -642,7 +649,10 @@ const MenuBar: FC<MenuBarType> = (props) => {
                       .extendMarkRange('link')
                       .unsetLink()
                       .run();
-                    setIsOpenUrl(false);
+                    setUrl('');
+                    setTimeout(() => {
+                      setIsOpenUrl(false);
+                    }, 500);
                   }}
                   customCSS={css`
                     padding: 5px;
@@ -669,7 +679,9 @@ const MenuBar: FC<MenuBarType> = (props) => {
                     background-color: #f1576c;
                   `}
                   onClick={() => {
-                    setIsOpenUrl(false);
+                    setTimeout(() => {
+                      setIsOpenUrl(false);
+                    }, 500);
                     if (url) {
                       editor
                         ?.chain()
@@ -813,6 +825,11 @@ const MenuBar: FC<MenuBarType> = (props) => {
                               'https://vimeo.com/',
                               'https://player.vimeo.com/video/'
                             );
+                          setLoadingFile(true);
+                          setTimeout(() => {
+                            setLoadingFile(false);
+                            setIsOpenVideo(false);
+                          }, 500);
                           editor
                             ?.chain()
                             .focus()
@@ -839,6 +856,8 @@ const MenuBar: FC<MenuBarType> = (props) => {
                               setLoadingFile(false);
                               console.warn(err);
                             });
+                        } else {
+                          setIsOpenVideo(false);
                         }
                       }}
                     >
@@ -1012,7 +1031,7 @@ const MenuBar: FC<MenuBarType> = (props) => {
 };
 
 const AtomTextEditor: FC<AtomTextEditorType> = (props) => {
-  const { content, id, maxWidth } = props;
+  const { content, id, maxWidth, onBlur } = props;
   // const [code, setCode] = useState(true);
   const editor = useEditor(
     {
@@ -1111,7 +1130,7 @@ const AtomTextEditor: FC<AtomTextEditorType> = (props) => {
           }
         `}
       >
-        <EditorContent id={id} editor={editor} />
+        <EditorContent id={id} onBlur={onBlur} editor={editor} />
       </AtomWrapper>
       <InputTextError {...props} />
     </AtomWrapper>

@@ -47,7 +47,7 @@ const InputImageEditor: FC<InputImageEditorProps> = (props) => {
       setDropActive(false);
       setIsModal(true);
     } else {
-      refInput.current.setAttribute('value', ``);
+      refInput.current.value = null;
       setBlob(null);
       setDropActive(false);
       setIsModal(false);
@@ -66,7 +66,7 @@ const InputImageEditor: FC<InputImageEditorProps> = (props) => {
         setDropActive(false);
         setIsModal(true);
       } else {
-        refInput.current.setAttribute('value', ``);
+        refInput.current.value = null;
         setBlob(null);
         setDropActive(false);
       }
@@ -80,7 +80,7 @@ const InputImageEditor: FC<InputImageEditorProps> = (props) => {
         ref.current.elementRef.current &&
         !ref.current.elementRef.current.contains(event.target as Node)
       ) {
-        refInput.current.setAttribute('value', ``);
+        refInput.current.value = null;
         setBlob(null);
         setImage(null);
         setDropActive(false);

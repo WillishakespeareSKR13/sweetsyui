@@ -70,13 +70,8 @@ const AtomFilterCategory: FC<AtomFilterCategoryTypes> = (props) => {
           <AtomInput
             key={option.id}
             type="checkbox"
-            customCSS={css`
-              input {
-                margin-right: 5px;
-                filter: hue-rotate(67deg);
-              }
-            `}
             {...option}
+            accentColor="#f75e5e"
             label=""
             errorHeight="0px"
             value={`${option.value}`}
@@ -88,6 +83,18 @@ const AtomFilterCategory: FC<AtomFilterCategoryTypes> = (props) => {
                   : [...categoriesSelected, option.id]
               );
             }}
+            // accentColor="#f1576c"
+            {...componentsProps?.optionsProps}
+            customCSS={css`
+              input {
+                margin-right: 5px;
+                filter: hue-rotate(67deg);
+                :checked {
+                  filter: hue-rotate(0deg);
+                }
+              }
+              ${componentsProps?.optionsProps?.customCSS}
+            `}
           >
             <AtomText
               margin="3px 0px 0px 0px"

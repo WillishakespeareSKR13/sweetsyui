@@ -963,7 +963,7 @@ const _NormalizerStyled: FC = () => (
         border-top: 0;
         border-bottom: 0;
       }
-      .PinturaRoot .PinturaNavSet > :first-child:not(:only-child) {
+      .PinturaRoot .PinturaNavSet > :first-of-type:not(:only-child) {
         border-left: 0;
       }
       .PinturaRoot .PinturaNavSet > :last-child:not(:only-child) {
@@ -982,11 +982,11 @@ const _NormalizerStyled: FC = () => (
       }
       .PinturaRoot
         .PinturaNavSet
-        > :first-child:not(:only-child)
+        > :first-of-type:not(:only-child)
         .PinturaButtonInner {
         padding: 0 0.125em 0 0.25em;
       }
-      .PinturaRoot .PinturaNavSet > :first-child:not(:only-child) {
+      .PinturaRoot .PinturaNavSet > :first-of-type:not(:only-child) {
         border-top-left-radius: var(--border-radius-round);
         border-bottom-left-radius: var(--border-radius-round);
       }
@@ -1568,7 +1568,7 @@ const _NormalizerStyled: FC = () => (
       .PinturaPanel[data-util='filter']
         [data-layout='row']
         > .PinturaRadioGroupOptions
-        > li:first-child {
+        > li:first-of-type {
         margin-left: 0;
       }
       .PinturaPanel[data-util='filter']
@@ -1741,7 +1741,7 @@ const _NormalizerStyled: FC = () => (
       .PinturaPanel[data-util='frame']
         [data-layout='row']
         > .PinturaRadioGroupOptions
-        > li:first-child {
+        > li:first-of-type {
         margin-left: 0;
       }
       .PinturaPanel[data-util='frame']
@@ -2749,7 +2749,7 @@ const _NormalizerStyled: FC = () => (
       }
       .PinturaUtilFooter
         .PinturaControlList[data-layout='compact']
-        > [role='tab']:first-child:not(:only-child)
+        > [role='tab']:first-of-type:not(:only-child)
         button {
         padding-left: 0.75em;
         border-top-left-radius: var(--border-radius-round);
@@ -2811,7 +2811,7 @@ const _NormalizerStyled: FC = () => (
       .PinturaRoot[data-env~='overlay']
         .PinturaUtilFooter
         .PinturaControlList
-        li[role='tab']:first-child
+        li[role='tab']:first-of-type
         button {
         padding-left: 0.875em;
         border-top-left-radius: var(--border-radius-round);

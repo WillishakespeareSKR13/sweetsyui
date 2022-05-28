@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { SerializedStyles } from '@emotion/utils';
 import { MotionProps } from 'framer-motion';
-import { RefObject } from 'react';
+import { PointerEventHandler, RefObject } from 'react';
 
 export interface AtomWrapperTypes extends MotionProps {
+  id?: string;
+  onClick?: PointerEventHandler<any>;
   backgroundImage?: string;
   maxHeight?: string;
   alignItems?: 'center' | 'flex-start' | 'flex-end';
@@ -93,5 +95,6 @@ export interface AtomWrapperTypes extends MotionProps {
   as?: 'div' | 'form' | 'section' | 'li';
   refObject?: RefObject<any>;
   customCSS?: SerializedStyles;
+  onPointerDown?: PointerEventHandler<any>;
   dangerouslySetInnerHTML?: { __html: string };
 }

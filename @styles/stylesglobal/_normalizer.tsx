@@ -3,9 +3,10 @@ import { FC } from 'react';
 
 interface Props {
   scrollbarColor?: string;
+  scrollbarWidth?: string;
 }
 
-const _NormalizerStyled: FC<Props> = ({ scrollbarColor }) => (
+const _NormalizerStyled: FC<Props> = ({ scrollbarColor, scrollbarWidth }) => (
   <Global
     styles={css`
       *,
@@ -98,7 +99,7 @@ const _NormalizerStyled: FC<Props> = ({ scrollbarColor }) => (
         -webkit-tap-highlight-color: transparent;
       }
       ::-webkit-scrollbar {
-        width: 7px;
+        width: ${scrollbarWidth ?? '7px'};
       }
       ::-webkit-scrollbar-thumb {
         background: ${scrollbarColor || '#f0a58b'};

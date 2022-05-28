@@ -30,16 +30,16 @@ const OptionsPagination = [
     label: '50',
     value: '50',
   },
-  {
-    id: 'paginationKey1',
-    label: '75',
-    value: '75',
-  },
-  {
-    id: 'paginationKey1',
-    label: '100',
-    value: '100',
-  },
+  // {
+  //   id: 'paginationKey1',
+  //   label: '75',
+  //   value: '75',
+  // },
+  // {
+  //   id: 'paginationKey1',
+  //   label: '100',
+  //   value: '100',
+  // },
 ];
 
 const Table = <T extends object>(props: AtomTableTypes<T>) => {
@@ -131,6 +131,7 @@ const Table = <T extends object>(props: AtomTableTypes<T>) => {
                     display: none;
                   }
                 `}
+                value={`${state.limit}`}
                 options={OptionsPagination?.filter(
                   (e) => Number(e.value) <= state.totaldocs
                 )}

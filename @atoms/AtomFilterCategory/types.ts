@@ -13,6 +13,7 @@ export type AtomFilterCategoryTypes = {
     titleProps?: AtomTextTypes;
     buttonProps?: AtomButtonTypes;
     textProps?: AtomTextTypes;
+    optionsProps?: AtomInputTypes;
   };
   options?: AtomInputTypes['options'];
   onClick?: (value: CategoriesSelectedTypes[]) => void;

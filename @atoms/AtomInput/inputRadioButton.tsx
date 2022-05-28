@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import AtomText from '../AtomText';
 import AtomWrapper from '../AtomWrapper';
 import { AtomInputTypes } from './types';
@@ -14,7 +14,7 @@ const Animation = {
 };
 
 const InputRadioButton: FC<AtomInputTypes> = (props) => {
-  const { value, onChange, formik, id, options } = props;
+  const { value, onChange, onBlur, formik, id, options } = props;
   const {
     labelWidth,
     labelColor,
@@ -26,6 +26,9 @@ const InputRadioButton: FC<AtomInputTypes> = (props) => {
     spanMargin,
     customCSS,
   } = props;
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  useEffect(() => {}, [formik?.values[id]]);
   return (
     <InputTextLabelStyled
       labelWidth={labelWidth}
@@ -43,7 +46,10 @@ const InputRadioButton: FC<AtomInputTypes> = (props) => {
         formik && id && formik?.values[id] ? formik?.values[id] : value
       }
       onChange={formik ? formik?.handleChange : onChange}
-      onBlur={formik?.handleBlur}
+      onBlur={(e) => {
+        formik?.handleBlur(e);
+        onBlur?.(e);
+      }}
     >
       {options &&
         options.map((option) => (

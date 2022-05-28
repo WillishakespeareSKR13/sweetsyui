@@ -1,16 +1,14 @@
 import {
+  AtomButton,
+  AtomDropdown,
+  AtomIcon,
   AtomLink,
   AtomText,
-  AtomIcon,
-  AtomDropdown,
   AtomWrapper,
-  AtomButton,
 } from '@atoms';
-
 import { css } from '@emotion/react';
 import { FC, useState } from 'react';
-import { LinkStyled, ContainerLinkStyled } from './style';
-
+import { ContainerLinkStyled, LinkStyled } from './style';
 import { HeaderLinkProps } from './types';
 
 const HeaderLink: FC<HeaderLinkProps> = (props) => {
@@ -27,7 +25,6 @@ const HeaderLink: FC<HeaderLinkProps> = (props) => {
   const [treeSubFileds, setTreeSubFileds] = useState(false);
   const [showMoreLinks, setShowMoreLikns] = useState(false);
   const [showTreeSubField, setShowTreeSubField] = useState(0);
-
   return (
     <ContainerLinkStyled>
       {links.length > (linksLength || 3) ? (
@@ -44,9 +41,8 @@ const HeaderLink: FC<HeaderLinkProps> = (props) => {
                   }}
                   onHoverEnd={() => setTreeSubFileds(false)}
                 >
-                  <AtomText
+                  <AtomLink
                     fontSize="12px"
-                    as="span"
                     {...link}
                     color="#1d1d1d"
                     fontWeight={600}
@@ -71,7 +67,7 @@ const HeaderLink: FC<HeaderLinkProps> = (props) => {
                       {...iconProps}
                       icon="https://storage.googleapis.com/cdn-bucket-ixulabs-commons/frontend-library/icons/arrow-down-3101.svg"
                     />
-                  </AtomText>
+                  </AtomLink>
                   {treeSubFileds && showTreeSubField === index && (
                     <AtomDropdown data={link?.subFields} />
                   )}
@@ -91,7 +87,7 @@ const HeaderLink: FC<HeaderLinkProps> = (props) => {
                 </LinkStyled>
               )
             )}
-          {links.length > (linksLength || 3) && (
+          {links.length >= (linksLength || 3) && (
             <AtomWrapper
               as="li"
               position="relative"
@@ -144,7 +140,7 @@ const HeaderLink: FC<HeaderLinkProps> = (props) => {
               </AtomButton>
               {showMoreLinks && (
                 <AtomDropdown
-                  data={links.filter((_, index) => index > (linksLength || 3))}
+                  data={links.filter((_, index) => index >= (linksLength || 3))}
                 />
               )}
             </AtomWrapper>
@@ -166,6 +162,7 @@ const HeaderLink: FC<HeaderLinkProps> = (props) => {
               </AtomLink>
             </LinkStyled>
           ))} */}
+
           {links.map((link, index) =>
             link?.type === 'dropdown' ? (
               <LinkStyled
@@ -176,9 +173,8 @@ const HeaderLink: FC<HeaderLinkProps> = (props) => {
                 }}
                 onHoverEnd={() => setTreeSubFileds(false)}
               >
-                <AtomText
+                <AtomLink
                   fontSize="12px"
-                  as="span"
                   {...link}
                   color="#1d1d1d"
                   fontWeight={600}
@@ -203,7 +199,7 @@ const HeaderLink: FC<HeaderLinkProps> = (props) => {
                     {...iconProps}
                     icon="https://storage.googleapis.com/cdn-bucket-ixulabs-commons/frontend-library/icons/arrow-down-3101.svg"
                   />
-                </AtomText>
+                </AtomLink>
                 {treeSubFileds && showTreeSubField === index && (
                   <AtomDropdown data={link?.subFields} />
                 )}

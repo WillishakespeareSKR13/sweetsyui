@@ -8,6 +8,8 @@ export { default as AtomIcon } from './AtomIcon';
 export { default as AtomInput } from './AtomInput';
 export { default as AtomButton } from './AtomButton';
 export { default as AtomSeo } from './AtomSeo';
+export { default as AtomSeoPage } from './AtomSeoPage';
+export { default as AtomFormSeo } from './AtomFormSeo';
 export { default as AtomLoader } from './AtomLoader';
 export { default as AtomProgressBar } from './AtomProgressBar';
 export { default as AtomDropdown } from './AtomDropdown';

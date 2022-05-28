@@ -1,14 +1,15 @@
 import { css, SerializedStyles } from '@emotion/react';
 import { FC } from 'react';
-import { Swiper, SwiperProps, SwiperSlide } from 'swiper/react';
 import SwiperCore, {
-  Navigation,
-  Pagination,
-  Scrollbar,
   A11y,
   Autoplay,
   EffectFade,
+  Navigation,
+  Pagination,
+  Scrollbar,
+  SwiperOptions,
 } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import AtomWrapper from '../AtomWrapper';
 import SwiperStyles from './styles';
 
@@ -16,10 +17,9 @@ interface AtomCarrousellType {
   width?: string;
   height?: string;
   customCSS?: SerializedStyles;
-  swiperProps?: SwiperProps;
+  swiperProps?: SwiperOptions;
   slides?: JSX.Element[];
   children?: JSX.Element[];
-  skeleton?: JSX.Element[];
   direction?: 'horizontal' | 'vertical';
   slidesPerView?: number;
   acentColor?: string;
@@ -37,7 +37,6 @@ const AtomCarrousell: FC<AtomCarrousellType> = (props) => {
     slidesPerView,
     acentColor,
     slides,
-    skeleton,
   } = props;
   return (
     <AtomWrapper
@@ -95,9 +94,6 @@ const AtomCarrousell: FC<AtomCarrousellType> = (props) => {
         slidesPerView={slidesPerView || 1}
         {...swiperProps}
       >
-        {skeleton?.map((item) => (
-          <SwiperSlide key={item?.key}>{item}</SwiperSlide>
-        ))}
         {slides?.map((item) => (
           <SwiperSlide key={item?.key}>{item}</SwiperSlide>
         ))}
