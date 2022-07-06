@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { css } from '@emotion/react';
 import { DragEvent, FC, FormEvent, useEffect, useState } from 'react';
 
@@ -40,7 +41,7 @@ const InputDragDropMultiple: FC<Props> = (props) => {
     }
   }, [formik?.values[`${id}`]]);
 
-  const Drop = (e: DragEvent<HTMLLabelElement>) => {
+  const Drop = (e: DragEvent<any>) => {
     e.preventDefault();
     e.stopPropagation();
     const { files } = e.dataTransfer;
@@ -79,7 +80,7 @@ const InputDragDropMultiple: FC<Props> = (props) => {
       }
     }
   };
-  const handleDrag = (e: DragEvent<HTMLLabelElement>) => {
+  const handleDrag = (e: DragEvent<any>) => {
     e.preventDefault();
     e.stopPropagation();
   };
@@ -117,13 +118,13 @@ const InputDragDropMultiple: FC<Props> = (props) => {
         dropActive={dropActive}
         htmlFor={id}
         onDrop={Drop}
-        onDragOver={(e: DragEvent<HTMLLabelElement>) => {
+        onDragOver={(e: DragEvent<any>) => {
           e.preventDefault();
           e.stopPropagation();
           setDropActive(true);
         }}
-        onDragEnter={(event: DragEvent<HTMLLabelElement>) => handleDrag(event)}
-        onDragLeave={(e: DragEvent<HTMLLabelElement>) => {
+        onDragEnter={(event: DragEvent<any>) => handleDrag(event)}
+        onDragLeave={(e: DragEvent<any>) => {
           e.preventDefault();
           e.stopPropagation();
           setDropActive(false);

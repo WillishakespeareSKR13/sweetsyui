@@ -35,7 +35,7 @@ const InputDragDropMultipleImages: FC<AtomInputTypes> = (props) => {
     }
   }, [filter]);
 
-  const Drop = (e: DragEvent<HTMLLabelElement>) => {
+  const Drop = (e: DragEvent<any>) => {
     e.preventDefault();
     e.stopPropagation();
     const { files } = e.dataTransfer;
@@ -113,13 +113,13 @@ const InputDragDropMultipleImages: FC<AtomInputTypes> = (props) => {
         dropActive={dropActive}
         htmlFor={id}
         onDrop={Drop}
-        onDragOver={(e: DragEvent<HTMLLabelElement>) => {
+        onDragOver={(e: DragEvent<any>) => {
           e.preventDefault();
           e.stopPropagation();
           setDropActive(true);
         }}
-        onDragEnter={(event: DragEvent<HTMLLabelElement>) => handleDrag(event)}
-        onDragLeave={(e: DragEvent<HTMLLabelElement>) => {
+        onDragEnter={(event: DragEvent<any>) => handleDrag(event)}
+        onDragLeave={(e: DragEvent<any>) => {
           e.preventDefault();
           e.stopPropagation();
           setDropActive(false);

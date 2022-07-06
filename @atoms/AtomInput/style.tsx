@@ -330,7 +330,8 @@ export const InputCheckboxToggleStyled = styled(motion.input)<AtomInputTypes>`
   border: solid 1px #244a77;
 `;
 
-export const InputErrorStyled = styled.span<AtomInputTypes>`
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const InputErrorStyled = styled.span<any>`
   font-family: ${({ errorFontFamily }) =>
     errorFontFamily || `'Montserrat', sans-serif`};
   font-size: ${({ errorFontSize }) => errorFontSize || `10px`};

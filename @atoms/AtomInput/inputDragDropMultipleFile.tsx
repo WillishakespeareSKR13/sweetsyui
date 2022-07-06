@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DragEvent, FC, FormEvent, useEffect, useRef, useState } from 'react';
 import { css } from '@emotion/react';
 import { v4 as uuidv4 } from 'uuid';
@@ -33,7 +34,7 @@ const InputDragDropMultipleFiles: FC<AtomInputTypes> = (props) => {
     }
   }, [filter]);
 
-  const Drop = (e: DragEvent<HTMLLabelElement>) => {
+  const Drop = (e: DragEvent<any>) => {
     e.preventDefault();
     e.stopPropagation();
     const { files } = e.dataTransfer;
@@ -71,7 +72,7 @@ const InputDragDropMultipleFiles: FC<AtomInputTypes> = (props) => {
     }
   };
 
-  const handleDrag = (e: DragEvent<HTMLLabelElement>) => {
+  const handleDrag = (e: DragEvent<any>) => {
     e.preventDefault();
     e.stopPropagation();
   };
@@ -108,13 +109,13 @@ const InputDragDropMultipleFiles: FC<AtomInputTypes> = (props) => {
         dropActive={dropActive}
         htmlFor={id}
         onDrop={Drop}
-        onDragOver={(e: DragEvent<HTMLLabelElement>) => {
+        onDragOver={(e: DragEvent<any>) => {
           e.preventDefault();
           e.stopPropagation();
           setDropActive(true);
         }}
-        onDragEnter={(event: DragEvent<HTMLLabelElement>) => handleDrag(event)}
-        onDragLeave={(e: DragEvent<HTMLLabelElement>) => {
+        onDragEnter={(event: DragEvent<any>) => handleDrag(event)}
+        onDragLeave={(e: DragEvent<any>) => {
           e.preventDefault();
           e.stopPropagation();
           setDropActive(false);
