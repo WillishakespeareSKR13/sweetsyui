@@ -12,6 +12,7 @@ export interface Link {
 }
 
 export interface RecursiveDropdownHook {
+  children?: React.ReactNode;
   data?: Link[];
   recursive?: boolean;
   stylesWrapper?: AtomWrapperTypes;

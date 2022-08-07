@@ -20,6 +20,7 @@ export type AtomInputTypes = HTMLMotionProps<'input'> &
   HTMLMotionProps<'textarea'> &
   HTMLMotionProps<'select'> &
   HTMLMotionProps<'label'> & {
+    children?: React.ReactNode;
     type?:
       | 'password'
       | 'select'

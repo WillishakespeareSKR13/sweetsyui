@@ -4,6 +4,7 @@ import { AtomTextTypes } from '@atoms/AtomText/types';
 import { AtomWrapperTypes } from '@atoms/AtomWrapper/types';
 
 export interface ContactComponentTypes {
+  children?: React.ReactNode;
   image?: string;
   name?: string;
   messageSend?: string;

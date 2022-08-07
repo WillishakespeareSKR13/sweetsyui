@@ -5,6 +5,7 @@ import { PointerEventHandler, RefObject } from 'react';
 
 export interface AtomWrapperTypes extends MotionProps {
   id?: string;
+  children?: React.ReactNode;
   onClick?: PointerEventHandler<any>;
   backgroundImage?: string;
   maxHeight?: string;

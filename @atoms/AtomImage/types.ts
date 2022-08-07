@@ -7,6 +7,7 @@ export interface AtomNextImageTypes {
 }
 
 export interface AtomImageTypes extends MotionProps {
+  children?: React.ReactNode;
   width?: string;
   maxWidth?: string;
   height?: string;

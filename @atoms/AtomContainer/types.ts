@@ -4,6 +4,7 @@ import { MotionProps } from 'framer-motion';
 export interface AtomContainerTypes extends MotionProps {
   backgroundImage?: string;
   backgroundColor?: string;
+  children?: React.ReactNode;
 
   backgroundSize?: string;
   alignItems?: 'center' | 'flex-start' | 'flex-end';

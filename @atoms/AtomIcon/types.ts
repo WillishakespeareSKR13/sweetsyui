@@ -10,4 +10,5 @@ export interface AtomIconTypes extends MotionProps {
   height?: string;
   customCSS?: SerializedStyles;
   onPointerDown?: PointerEventHandler<HTMLDivElement>;
+  children?: React.ReactNode;
 }

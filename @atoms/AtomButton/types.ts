@@ -4,6 +4,7 @@ import { MotionProps } from 'framer-motion';
 import { PointerEventHandler, RefObject } from 'react';
 
 export interface AtomButtonTypes extends MotionProps {
+  children?: React.ReactNode;
   color?: string;
   width?: string;
   height?: string;
